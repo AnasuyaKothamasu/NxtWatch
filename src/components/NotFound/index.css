@@ -1,0 +1,41 @@
+.flex-container-notfound {
+  display: flex;
+  flex-direction: row;
+  font-family: sans-serif;
+}
+.notfound-container {
+  min-width: calc(100% - 20vw);
+  margin-left: 20vw;
+  margin-top: 80px;
+  height: calc(100vh - 80px);
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.nfc-light  {
+    background-color: rgba(247, 246, 246, 0.904);
+}
+.nfc-dark {
+    background-color: black;
+}
+.notfound-img {
+    height: 500px;
+}
+.nf-heading-light {
+    color: black;
+}
+.nf-heading-dark {
+    color: white;
+}
+.nf-descp {
+    font-size: large;
+    font-weight: 500;
+}
+.nf-descp-light {
+    color: rgb(150, 147, 147);
+}
+.nf-descp {
+    color: #aeb6c0;
+}

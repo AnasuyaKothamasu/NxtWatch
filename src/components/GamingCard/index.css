@@ -1,0 +1,36 @@
+.gaming-card {
+    background-color: transparent;
+}
+.gaming-card:hover {
+    cursor: pointer;
+}
+.game-thumbnail {
+    height: 500px;
+    width: 420px;
+}
+.gcard-title-light {
+    color: black;
+    font-weight: 700;
+}
+.gcard-title-dark {
+    color: white;
+    font-weight: 700;
+}
+.gviews-light {
+    font-size: 16px;
+    font-weight: 600;
+    color: rgb(150, 147, 147);
+}
+.gviews-dark {
+    color: #aeb6c0;
+}
+
+@media (max-width: 575px) {
+    
+}
+@media (min-width: 576px) and (max-width: 767px){
+
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+}

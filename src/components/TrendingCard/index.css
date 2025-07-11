@@ -1,0 +1,125 @@
+.trending-card {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 50px;
+}
+.thumbnail-trend {
+    height: 208px;
+    width: 375px;
+}
+.txt-div-trend {
+    padding: 20px;
+}
+.tc-title {
+    color: rgb(122, 120, 120);
+}
+.tc-title-dark {
+    color: white;
+}
+.tchannelName {
+    color: rgb(150, 147, 147);
+    font-weight: 600;
+}
+.tdescp {
+    font-weight: 600;
+}
+.tdescp-light {
+    color: rgb(150, 147, 147);
+}
+.tdescp-dark {
+    color: #aeb6c0;
+}
+.tchannel-light {
+    color: rgb(150, 147, 147);
+}
+.tchannel-dark {
+    color: #aeb6c0;
+}
+.channel-profile-trending {
+    display: none;
+}
+
+
+@media (max-width: 575px) {
+    .trending-card{
+        display: flex;
+        flex-direction: column;
+        max-width: 100%;
+        margin-bottom: 0;
+    }
+    .thumbnail-trend {
+        width: 100%;
+    }
+    .txt-div-trend {
+        padding: 5px 20px 5px 20px;
+    }
+    .channel-profile-trending {
+        height: 40px;
+        width: 40px;
+        align-self: center;
+        margin-left: 15px;
+    }
+    .sodhi {
+        display: flex;
+        flex-direction: row;
+    }
+    .tc-title {
+        font-size: 18px;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767px){
+    .channel-profile-trending {
+        display: none;
+    }
+    .trending-card {
+        display: flex;
+        flex-direction: row;
+    }
+    .thumbnail-trend {
+        height: auto;
+        width: 55%;
+    }
+    .txt-div-trend {
+        padding: 5px 20px 5px 20px;
+    }
+    .channel-profile-trending {
+        height: 40px;
+        width: 40px;
+        align-self: center;
+        margin-left: 15px;
+    }
+    .sodhi {
+        display: flex;
+        flex-direction: row;
+    }
+    .tc-title {
+        font-size: 16px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px){
+    .channel-profile-trending {
+        display: none;
+    }
+    .thumbnail-trend {
+        height: auto;
+        width: 55%;
+    }
+    .txt-div-trend {
+        padding: 5px 20px 5px 20px;
+    }
+    .channel-profile-trending {
+        height: 40px;
+        width: 40px;
+        align-self: center;
+        margin-left: 15px;
+    }
+    .sodhi {
+        display: flex;
+        flex-direction: row;
+    }
+    .tc-title {
+        font-size: 20px;
+    }
+}

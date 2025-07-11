@@ -1,0 +1,142 @@
+.saved-card {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 50px;
+}
+.thumbnail-saved {
+  height: 208px;
+  width: 375px;
+}
+
+.txt-div-saved {
+  padding: 20px;
+}
+.sc-title {
+  color: rgb(122, 120, 120);
+}
+.sc-title-dark {
+  color: white;
+}
+.schannelName {
+  color: rgb(150, 147, 147);
+  font-weight: 600;
+}
+.sdescp {
+  font-weight: 600;
+}
+.sdescp-light {
+  color: rgb(150, 147, 147);
+}
+.sdescp-dark {
+  color: #aeb6c0;
+}
+.schannel-light {
+  color: rgb(150, 147, 147);
+}
+.schannel-dark {
+  color: #aeb6c0;
+}
+.flex-saved-container {
+  display: flex;
+  flex-direction: row;
+  font-family: sans-serif;
+}
+.saved-container {
+  display: flex;
+  flex-direction: column;
+  min-width: calc(100% - 20vw);
+  margin-left: 20vw;
+  margin-top: 80px;
+  min-height: calc(100vh - 80px);
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+.saved-container-dark {
+    background-color: black;
+}
+.saved-heading-div {
+  background-color: rgba(241, 241, 241, 255);
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 50px;
+}
+.sheading-div-dark {
+  background-color: rgba(24, 24, 24, 255);
+  color: white;
+}
+.sicon-container {
+  margin-right: 20px;
+  border-radius: 50%;
+  padding: 25px 28px 25px 28px;
+}
+.slight-icon-container {
+  background-color: rgba(225, 233, 240, 255);
+}
+.sdark-icon-container {
+  background-color: rgba(15, 15, 15, 255);
+}
+.sicon {
+  height: 35px;
+  width: 35px;
+  color: #ff031c;
+}
+.sheading {
+  font-size: 35px;
+  font-weight: 700;
+}
+.svideos-container {
+  padding: 40px;
+}
+.scontainer-light {
+  background-color: rgba(247, 246, 246, 0.904);
+}
+.scontainer-dark {
+  background-color: black;
+}
+
+.nosaved-view {
+  display: flex;
+  flex-direction: column;
+  min-width: calc(100vw - 20vw);
+  margin-left: 20vw;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 80px);
+  margin-top: 80px;
+  font-family: sans-serif;
+  text-align: center;
+}
+.nosaved-light {
+  background-color: rgba(247, 246, 246, 0.904);
+}
+.nosaved-dark {
+  background-color: rgb(27, 27, 27);
+}
+.nosaved-heading {
+  font-size: 25px;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+.heading-light {
+  color: black;
+}
+.heading-dark {
+  color: white;
+}
+.nosaved-img {
+  height: 450px;
+  width: 600px;
+}
+.nosaved-descp {
+  margin-top: 0;
+  font-size: 20px;
+}
+.descp-light {
+  color: rgb(88, 88, 88);
+}
+.descp-dark {
+  color: rgb(173, 171, 171);
+}
