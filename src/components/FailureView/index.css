@@ -11,47 +11,101 @@
   text-align: center;
 }
 .failure-light {
-    background-color: rgba(247, 246, 246, 0.904);
+  background-color: rgba(247, 246, 246, 0.904);
 }
 .failure-dark {
-    background-color: rgb(27, 27, 27);
+  background-color: rgb(27, 27, 27);
 }
 .heading-light {
-    color: black;
+  color: black;
 }
 .heading-dark {
-    color: white;
+  color: white;
 }
 .failure-img {
   height: 350px;
   width: 400px;
 }
 .failure-descp {
-    font-size: 18px;
+  font-size: 18px;
 }
 .descp-light {
-    color: rgb(88, 88, 88);
+  color: rgb(88, 88, 88);
 }
 .descp-dark {
-    color: rgb(173, 171, 171);
+  color: rgb(173, 171, 171);
 }
 .failure-btn {
-    height: 35px;
-    width: 100px;
+  height: 35px;
+  width: 100px;
 }
 .btn-light {
-    background-color: #4a47e0;
-    border: none;
-    border-radius: 3px;
-    color: white;
-    font-size: 14px;
-    font-weight: 600;
+  background-color: #4a47e0;
+  border: none;
+  border-radius: 3px;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
 }
 .btn-dark {
-    background-color: #4a47e0;
-    border: none;
-    border-radius: 3px;
-    color: white;
-    font-size: 14px;
-    font-weight: 600;
+  background-color: #4a47e0;
+  border: none;
+  border-radius: 3px;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+@media (max-width: 575px) {
+  .failure-view {
+    height: calc(100vh - 65px);
+    margin-top: 65px;
+    margin-left: 0;
+    width: 100%;
+  }
+  .failure-img {
+    height: 200px;
+    width: 225px;
+  }
+  .failure-heading {
+    font-size: 20px;
+  }
+  .failure-descp {
+    margin-top: 0;
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+  .failure-view {
+    height: calc(100vh - 65px);
+    margin-top: 65px;
+    margin-left: 0;
+    width: 100%;
+  }
+  .failure-img {
+    height: 300px;
+    width: 325px;
+  }
+  .failure-heading {
+    font-size: 20px;
+  }
+  .failure-descp {
+    margin-top: 0;
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .failure-img {
+    height: 300px;
+    width: 350px;
+  }
+  .failure-heading {
+    font-size: 20px;
+  }
+  .failure-descp {
+    margin-top: 0;
+    font-size: 16px;
+  }
 }

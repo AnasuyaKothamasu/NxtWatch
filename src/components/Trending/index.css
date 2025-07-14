@@ -12,6 +12,12 @@
   margin-top: 80px;
   overflow-y: auto;
 }
+.trending-light {
+  background-color: rgba(247, 246, 246, 0.904);
+}
+.trending-dark {
+  background-color: black;
+}
 .trending-heading-div {
   background-color: rgba(241, 241, 241, 255);
   padding: 20px;
@@ -53,6 +59,10 @@
 }
 .tcontainer-dark {
   background-color: black;
+}
+.tloader {
+  margin-top: 100px;
+  text-align: center;
 }
 
 @media (max-width: 575px) {

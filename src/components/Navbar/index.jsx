@@ -3,10 +3,10 @@ import "./index.css";
 import { ThemeContext } from "../../context/ThemeContext";
 import { FaMoon } from "react-icons/fa";
 import { IoSunnyOutline } from "react-icons/io5";
-import { MdLogout } from "react-icons/md";
-import { GiHamburgerMenu } from "react-icons/gi";
-import ReactPopUp from "../PopUp";
+import ReactPopup from "../ReactPopup";
 import { useNavigate } from "react-router";
+import "reactjs-popup/dist/index.css"; 
+import SidebarPopup from "../SidebarPopup";
 
 const Navbar = () => {
   const [isLight, toggleTheme] = useContext(ThemeContext);
@@ -32,18 +32,8 @@ const Navbar = () => {
             className="profile-img"
           />
         </button>
-        <button className="theme-icon-container">
-          <GiHamburgerMenu className={`ham-btn-sm-dev ${isLight ? "sm-dev-ham-light" : "sm-dev-ham-dark"}`} />
-        </button>
-        <button
-          id="logout-btn"
-          className={isLight ? "logout-light" : "logout-dark"}
-        >
-          Logout
-        </button>
-        <button className="theme-icon-container">
-          <MdLogout className={`logout-btn-sm-dev ${isLight ? "sm-dev-logout-light" : "sm-dev-logout-dark"}`} />
-        </button>
+        <SidebarPopup />
+        <ReactPopup />
       </div>
     </div>
   );

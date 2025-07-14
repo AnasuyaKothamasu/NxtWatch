@@ -1,11 +1,12 @@
 import { useContext, useState } from "react";
 import Cookies from "js-cookie";
-import { Navigate } from "react-router";
+import { useNavigate } from "react-router";
 import { ThemeContext } from "../../context/ThemeContext";
 import "./index.css";
 
 const Login = () => {
   const [isLight] = useContext(ThemeContext);
+  const navigate = useNavigate()
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -15,7 +16,7 @@ const Login = () => {
 
   const handleSuccess = (jwtToken) => {
     Cookies.set("jwt_token", jwtToken, { expires: 30 });
-    Navigate("/", { replace: true });
+    navigate("/", { replace: true });
   };
 
   const handleFailure = (error) => {
@@ -39,11 +40,6 @@ const Login = () => {
       handleFailure(data.error_msg);
     }
   };
-
-  const jwtToken = Cookies.get("jwt_token");
-  if (jwtToken !== undefined) {
-    return <Navigate to="/" />;
-  }
 
   const logoUrl = isLight
     ? "https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"

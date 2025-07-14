@@ -1,36 +1,65 @@
 .gaming-card {
-    background-color: transparent;
+  background-color: transparent;
+  width: 25vw;
 }
 .gaming-card:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 .game-thumbnail {
-    height: 500px;
-    width: 420px;
+  height: 350px;
+  width: 90%;
 }
 .gcard-title-light {
-    color: black;
-    font-weight: 700;
+  color: black;
+  font-weight: 700;
 }
 .gcard-title-dark {
-    color: white;
-    font-weight: 700;
+  color: white;
+  font-weight: 700;
 }
 .gviews-light {
-    font-size: 16px;
-    font-weight: 600;
-    color: rgb(150, 147, 147);
+  font-size: 16px;
+  font-weight: 600;
+  color: rgb(150, 147, 147);
 }
 .gviews-dark {
-    color: #aeb6c0;
+  color: #aeb6c0;
 }
 
 @media (max-width: 575px) {
-    
+  .gaming-card {
+    width: 45vw;
+  }
+  .game-thumbnail {
+    align-self: center;
+    width: 90%;
+    height: 200px;
+  }
+  .gcard-title {
+    font-size: 18px;
+  }
+  .gviews {
+    font-size: 14px;
+  }
 }
-@media (min-width: 576px) and (max-width: 767px){
-
+@media (min-width: 576px) and (max-width: 767px) {
+  .gaming-card {
+    width: 30vw;
+  }
+  .game-thumbnail{
+    width: 90%;
+    height: 220px;
+  }
+  .gcard-title {
+    font-size: 18px;
+  }
+  .gviews {
+    font-size: 14px;
+  }
 }
 
-@media (min-width: 768px) and (max-width: 1023px) {
+@media (min-width:768px) and (max-width: 1023px) {
+  .game-thumbnail {
+    height: 280px;
+  }
 }

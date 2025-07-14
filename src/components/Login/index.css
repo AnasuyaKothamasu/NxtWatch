@@ -17,7 +17,7 @@
 }
 .container-light {
     height: auto;
-    width: 25%;
+    width: 30%;
     align-self: center;
     display: flex;
     flex-direction: column;
@@ -28,7 +28,7 @@
 }
 .container-dark {
     height: auto;
-    width: 25%;
+    width: 30%;
     align-self: center;
     background-color: rgb(18, 18, 19);
     border-radius: 8px;
@@ -113,4 +113,37 @@
     font-size: 16px;
     border-radius: 8px;
     font-weight: 600;
+}
+.errorMsg {
+    color: rgb(216, 34, 34);
+    margin-top: 0;
+    padding-left: 20px;
+}
+
+@media (max-width: 575px) {
+    .container-light{
+        width: 90%;
+    }
+    .container-dark {
+        width: 90%;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+    .container-light {
+        width: 70%;
+    }
+    .continer-dark {
+        width: 70%;
+    }
+
+}
+
+@media (min-width: 768px) and (max-width:1030px) {
+    .container-light {
+        width: 50%;
+    }
+    .container-dark {
+        width: 50%;
+    }
 }

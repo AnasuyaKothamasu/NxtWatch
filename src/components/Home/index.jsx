@@ -18,6 +18,7 @@ const Home = () => {
   const [showPremiumCard, setShowPremiumCard] = useState(true);
   const [searchInput, setSearchInput] = useState("");
   const [showSuccessView, setShowSuccessView] = useState(true);
+  const [filteredList, setFilteredList] = useState([]);
 
   const navigate = useNavigate();
   const jwtToken = Cookies.get("jwt_token");
@@ -47,6 +48,7 @@ const Home = () => {
         }));
         setIsLoading(false);
         setVideosList(formattedData);
+        setFilteredList(formattedData);
         setShowSuccessView(true);
       } else {
         setShowSuccessView(false);
@@ -60,7 +62,7 @@ const Home = () => {
     const updated = videosList.filter((each) =>
       each.title.toLowerCase().includes(searchInput.toLowerCase())
     );
-    setVideosList(updated);
+    setFilteredList(updated);
   }
 
   function novideosView() {
@@ -90,7 +92,7 @@ const Home = () => {
             Try different keywords or remove search.
           </p>
           <button
-            onClick={() => handleSearch()}
+            onClick={handleSearch}
             className={`failure-btn ${isLight ? "btn-light" : "btn-dark"}`}
           >
             Retry
@@ -103,7 +105,7 @@ const Home = () => {
   function videosView() {
     return (
       <div className="grid-container">
-        {videosList.map((each) => (
+        {filteredList.map((each) => (
           <VideoCard
             key={each.id}
             videoDetails={each}
@@ -130,7 +132,9 @@ const Home = () => {
           <form onSubmit={handleSearch} className="search-input-container">
             <input
               type="search"
-              className="search-bar"
+              className={`search-bar ${
+                isLight ? "search-bar-light" : "search-bar-dark"
+              }`}
               placeholder="Search"
               value={searchInput}
               onChange={(e) => setSearchInput(e.target.value)}
@@ -140,8 +144,11 @@ const Home = () => {
             </button>
           </form>
           {isLoading ? (
-            <BeatLoader className="loader" />
-          ) : videosList.length === 0 ? (
+            <BeatLoader
+              className="loader"
+              color={`${isLight ? "#000" : "#fff"}`}
+            />
+          ) : filteredList.length === 0 ? (
             novideosView()
           ) : (
             videosView()

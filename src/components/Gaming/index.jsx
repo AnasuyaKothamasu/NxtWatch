@@ -90,7 +90,14 @@ const Gaming = () => {
             isLight ? "gcontainer-light" : "gcontainer-dark"
           }`}
         >
-          {isLoading ? <BeatLoader className="loader" /> : ""}
+          {isLoading ? (
+            <BeatLoader
+              className={`gloader`}
+              color={`${isLight ? "#000" : "#fff"}`}
+            />
+          ) : (
+            ""
+          )}
           <div className="gaming-grid-container">
             {gamingVideos.map((each) => (
               <GamingCard

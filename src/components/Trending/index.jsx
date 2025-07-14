@@ -92,7 +92,7 @@ const Trending = () => {
             isLight ? "tcontainer-light" : "tcontainer-dark"
           }`}
         >
-          {isLoading ? <BeatLoader /> : ""}
+          {isLoading ? <BeatLoader className="tloader" color={`${isLight ? "#000" : "#fff"}`} /> : ""}
           {trendingVideos.map((each) => (
             <TrendingCard
               trendDetails={each}
