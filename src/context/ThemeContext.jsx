@@ -1,13 +1,8 @@
 import { createContext, useState } from "react";
 
 const ThemeContext = createContext();
-const ThemeProvider = ({ children }) => {
-  const [isLight, setIsLight] = useState(true);
+const SavedVideosProvider = ({ children }) => {
   const [savedVideos, setSavedVideos] = useState([]);
-
-  const toggleTheme = () => {
-    setIsLight((prev) => !prev);
-  };
 
   const save = (data) => {
     const updated = [...savedVideos, data];
@@ -20,10 +15,10 @@ const ThemeProvider = ({ children }) => {
   };
 
   return (
-    <ThemeContext.Provider value={[isLight, toggleTheme, savedVideos, save, unsave]}>
+    <ThemeContext.Provider value={[savedVideos, save, unsave]}>
       {children}
     </ThemeContext.Provider>
   );
 };
 
-export { ThemeContext, ThemeProvider };
+export { ThemeContext, SavedVideosProvider };

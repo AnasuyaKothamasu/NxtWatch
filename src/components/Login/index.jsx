@@ -1,12 +1,24 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router";
-import { ThemeContext } from "../../context/ThemeContext";
-import "./index.css";
+import { useTheme } from "styled-components";
+import {
+  LoginContainer,
+  LoginInnerContainer,
+  FormContainer,
+  Label,
+  LoginButton,
+  Input,
+  CheckBoxContainer,
+  CheckBoxLabel,
+  CheckBox,
+  FormLogo,
+  ErrorMsg
+} from "./StyledComponents";
 
 const Login = () => {
-  const [isLight] = useContext(ThemeContext);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const theme = useTheme();
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -41,66 +53,44 @@ const Login = () => {
     }
   };
 
-  const logoUrl = isLight
-    ? "https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
-    : "https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png";
-
   return (
     <>
-      <div className={isLight ? "light-container" : "dark-container"}>
-        <div className={isLight ? "container-light" : "container-dark"}>
-          <img src={logoUrl} className="logo" />
-          <form className="form-container" onSubmit={handleLoginSubmit}>
-            <label
-              className={isLight ? "label-light" : "label-dark"}
-              htmlFor="username"
-            >
-              USERNAME
-            </label>
-            <input
-              className={isLight ? "input-light" : "input-dark"}
+      <LoginContainer>
+        <LoginInnerContainer>
+          <FormLogo src={theme.logoUrl}/>
+          <FormContainer onSubmit={handleLoginSubmit}>
+            <Label htmlFor="username">USERNAME</Label>
+            <Input
               type="text"
               id="username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               placeholder="Username"
             />
-            <label
-              className={isLight ? "label-light" : "label-dark"}
-              htmlFor="password"
-            >
-              PASSWORD
-            </label>
-            <input
-              className={isLight ? "input-light" : "input-dark"}
+            <Label htmlFor="password">PASSWORD</Label>
+            <Input
               id="password"
               type={showPass ? "text" : "password"}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Password"
             />
-            <div className="check-div">
-              <input
+            <CheckBoxContainer className="check-div">
+              <CheckBox
                 type="checkbox"
                 id="checkbox"
-                className={isLight ? "checkbox-light" : "checkbox-dark"}
                 value={showPass}
-                onChange={(e) => setShowPass((prev) => !prev)}
+                onChange={() => setShowPass((prev) => !prev)}
               />
-              <label
-                className={isLight ? "check-light" : "check-dark"}
-                htmlFor="checkbox"
-              >
-                Show Password
-              </label>
-            </div>
-            <button type="submit" className="login-btn">
+              <CheckBoxLabel htmlFor="checkbox">Show Password</CheckBoxLabel>
+            </CheckBoxContainer>
+            <LoginButton type="submit" className="login-btn">
               Login
-            </button>
-            {showError && <p className="errorMsg">{errorMsg}</p>}
-          </form>
-        </div>
-      </div>
+            </LoginButton>
+            {showError && <ErrorMsg className="errorMsg">{errorMsg}</ErrorMsg>}
+          </FormContainer>
+        </LoginInnerContainer>
+      </LoginContainer>
     </>
   );
 };

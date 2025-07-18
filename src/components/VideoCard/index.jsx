@@ -1,28 +1,43 @@
-import { useContext } from 'react'
-import './index.css'
-import { ThemeContext } from '../../context/ThemeContext'
+import {
+  VideoCardContainer,
+  VideoThumbnail,
+  VideoCardFlexConatiner,
+  VideoCardChannelProfile,
+  TextContainerVideo,
+  VideoTitle,
+  VideoChannelName,
+  VideoDescp,
+} from "./StyledComponents";
 
-const VideoCard = props => {
-    const [isLight] = useContext(ThemeContext)
-    const {videoDetails, handleClick} = props
-    const {channelName, channelProfile, id, publishedAt, thumbnailUrl, title, views} = videoDetails
+const VideoCard = (props) => {
+  const { videoDetails, handleClick } = props;
+  const {
+    channelName,
+    channelProfile,
+    id,
+    publishedAt,
+    thumbnailUrl,
+    title,
+    views,
+  } = videoDetails;
 
+  return (
+    <>
+      <VideoCardContainer onClick={() => handleClick(id)}>
+        <VideoThumbnail src={thumbnailUrl} />
+        <VideoCardFlexConatiner>
+          <VideoCardChannelProfile src={channelProfile} />
+          <TextContainerVideo>
+            <VideoTitle>{title}</VideoTitle>
+            <VideoChannelName>{channelName}</VideoChannelName>
+            <VideoDescp>
+              {views} views • {publishedAt}
+            </VideoDescp>
+          </TextContainerVideo>
+        </VideoCardFlexConatiner>
+      </VideoCardContainer>
+    </>
+  );
+};
 
-    return (
-        <>
-            <div onClick={() => handleClick(id)} className={`videocard-container ${isLight ? "vcontainer-light" : "vcontainer-dark"}`}>
-                <img className='thumbnail' src={thumbnailUrl} />
-                <div className='flex-container1'>
-                    <img src={channelProfile} className='channel-profile' />
-                    <div className='text-container'>
-                        <h4 className='video-title'>{title}</h4>
-                        <p className={`channel-name ${isLight ? "light-channel" : "dark-channel"}`}>{channelName}</p>
-                        <p className={`descp ${isLight ? "light-descp" : "dark-descp"}`}>{views} views • {publishedAt}</p>
-                    </div>
-                </div>
-            </div>
-        </>
-    )
-}
-
-export default VideoCard
+export default VideoCard;

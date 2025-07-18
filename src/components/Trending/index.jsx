@@ -1,17 +1,23 @@
-import { useContext, useEffect, useState } from "react";
-import Navbar from "../Navbar";
+import { useEffect, useState } from "react";
 import Sidebar from "../Sidebar";
 import Cookies from "js-cookie";
-import "./index.css";
-import { ThemeContext } from "../../context/ThemeContext";
 import { ImFire } from "react-icons/im";
 import { useNavigate } from "react-router";
 import { BeatLoader } from "react-spinners";
 import FailureView from "../FailureView";
 import TrendingCard from "../TrendingCard";
 
+import {
+  TrendingFlexContainer,
+  TrendingSuccessContainer,
+  HeadingContainer,
+  HeadingIconContainer,
+  Heading,
+  Loader,
+  TrendingVideosContainer,
+} from "./StyledComponents";
+
 const Trending = () => {
-  const [isLight] = useContext(ThemeContext);
   const navigate = useNavigate();
   const [showSuccessView, setShowSuccessView] = useState(true);
   const [trendingVideos, setTrendingVideos] = useState([]);
@@ -60,39 +66,20 @@ const Trending = () => {
 
   function successView() {
     return (
-      <div
-        className={`trending-container ${
-          isLight ? "trending-light" : "trending-dark"
-        }`}
-      >
-        <div
-          className={`trending-heading-div ${
-            isLight ? "heading-div-light" : "heading-div-dark"
-          }`}
-        >
-          <div
-            className={`icon-container ${
-              isLight ? "light-icon-container" : "dark-icon-container"
-            }`}
-          >
-            <ImFire
-              className={`ticon ${isLight ? "ticon-light" : "ticon-dark"}`}
-            />
-          </div>
-          <h1
-            className={`theading ${
-              isLight ? "theading-light" : "theading-dark"
-            }`}
-          >
-            Trending
-          </h1>
-        </div>
-        <div
-          className={`tvideos-container ${
-            isLight ? "tcontainer-light" : "tcontainer-dark"
-          }`}
-        >
-          {isLoading ? <BeatLoader className="tloader" color={`${isLight ? "#000" : "#fff"}`} /> : ""}
+      <TrendingSuccessContainer>
+        <HeadingContainer>
+          <HeadingIconContainer>
+            <ImFire className="icon" />
+          </HeadingIconContainer>
+          <Heading>Trending</Heading>
+        </HeadingContainer>
+        <TrendingVideosContainer>
+          {isLoading && (
+            <Loader>
+              {" "}
+              <BeatLoader />{" "}
+            </Loader>
+          )}
           {trendingVideos.map((each) => (
             <TrendingCard
               trendDetails={each}
@@ -100,18 +87,17 @@ const Trending = () => {
               key={each.id}
             />
           ))}
-        </div>
-      </div>
+        </TrendingVideosContainer>
+      </TrendingSuccessContainer>
     );
   }
 
   return (
     <>
-      <Navbar />
-      <div className="flex-container-trending">
+      <TrendingFlexContainer className="flex-container-trending">
         <Sidebar />
         {showSuccessView ? successView() : <FailureView />}
-      </div>
+      </TrendingFlexContainer>
     </>
   );
 };

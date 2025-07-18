@@ -1,43 +1,27 @@
-import { useContext } from "react";
-import { ThemeContext } from "../../context/ThemeContext";
-import "./index.css";
-import Navbar from "../Navbar";
 import Sidebar from "../Sidebar";
+import { useTheme } from "styled-components";
+import {
+  NotFoundFlexContainer,
+  NotFoundContainer,
+  NotFoundImage,
+  NotFoundDescp,
+  NotFoundHeading,
+} from "./StyledComponents";
 
 const NotFound = () => {
-  const [isLight] = useContext(ThemeContext);
+  const theme = useTheme();
   return (
     <>
-      <Navbar />
-      <div className="flex-container-notfound">
+      <NotFoundFlexContainer className="flex-container-notfound">
         <Sidebar />
-        <div
-          className={`notfound-container ${isLight ? "nfc-light" : "nfc-dark"}`}
-        >
-          <img
-            className="notfound-img"
-            src={
-              isLight
-                ? "https://assets.ccbp.in/frontend/react-js/nxt-watch-not-found-light-theme-img.png"
-                : "https://assets.ccbp.in/frontend/react-js/nxt-watch-not-found-dark-theme-img.png"
-            }
-          />
-          <h1
-            className={`nf-heading ${
-              isLight ? "nf-heading-light" : "nf-heading-dark"
-            }`}
-          >
-            Page Not Found
-          </h1>
-          <p
-            className={`nf-descp ${
-              isLight ? "nf-descp-light" : "nf-descp-dark"
-            }`}
-          >
+        <NotFoundContainer>
+          <NotFoundImage src={theme.notFoundImage} />
+          <NotFoundHeading>Page Not Found</NotFoundHeading>
+          <NotFoundDescp>
             We're sorry, the page you requested could not be found.
-          </p>
-        </div>
-      </div>
+          </NotFoundDescp>
+        </NotFoundContainer>
+      </NotFoundFlexContainer>
     </>
   );
 };

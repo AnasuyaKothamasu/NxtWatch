@@ -1,127 +1,108 @@
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import { useNavigate } from "react-router";
-import { useContext } from "react";
-import { ThemeContext } from "../../context/ThemeContext";
 import { GiHamburgerMenu } from "react-icons/gi";
-import "./index.css";
 import { RxCross2 } from "react-icons/rx";
 import { TiHome } from "react-icons/ti";
 import { ImFire } from "react-icons/im";
+import './index.css'
 import { SiYoutubegaming } from "react-icons/si";
 import { MdOutlinePlaylistAdd } from "react-icons/md";
 import { useLocation } from "react-router";
+import { useTheme } from "styled-components";
+import {
+  CrossBtnPop,
+  HamButton,
+  SidePopContainer,
+  SidePopInnerDiv,
+  Icon,
+  SidebarTxt,
+} from "./StyledComponents";
 
 const SidebarPopup = () => {
   const navigate = useNavigate();
-  const [isLight] = useContext(ThemeContext);
   const location = useLocation();
-  const path = location.pathname;
+  const theme = useTheme();
 
-  const getClassName = (path) => {
-    if (isLight) {
-      return path ? "light-active" : "light";
-    } else {
-      return path ? "dark-active" : "dark";
-    }
-  };
-
-  const getIconName = (path) => {
-    if (isLight) {
-      return path ? "light-active-icon" : "light-icon";
-    } else {
-      return path ? "dark-active-icon" : "dark-icon";
-    }
-  };
-
-  const getTxtName = (path) => {
-    if (isLight) {
-      return path ? "light-active-txt" : "light-txt";
-    } else {
-      return path ? "dark-active-txt" : "dark-txt";
-    }
+  const isActive = (path) => {
+    return path === location.pathname;
   };
 
   return (
-    <div className="popup-container">
+    <div>
       <Popup
         modal
-        contentStyle={{ padding: 0, border: "none" }}
-        className={`menu ${isLight ? "light-mode" : "dark-mode"}`}
+        contentStyle={{ padding: 0, border: "none", margin: 0, }}
+        className={`menu ${theme.popClassName}`}
         trigger={
-          <button
-            type="button"
-            className={`ham-btn ${isLight ? "ham-light" : "ham-dark"}`}
-          >
+          <HamButton type="button">
             <GiHamburgerMenu
-              className={`ham-btn-sm-dev ${
-                isLight ? "sm-dev-ham-light" : "sm-dev-ham-dark"
-              }`}
+              className={`ham-btn-sm-dev ${theme.hamClassName}`}
             />
-          </button>
+          </HamButton>
         }
       >
         {(close) => (
           <>
-            <button
-              type="button"
-              className="cross-btn-pop"
-              onClick={() => close()}
-            >
-              <RxCross2
-                className={`cross-btn ${
-                  isLight ? "cross-pop-light" : "cross-pop-dark"
-                }`}
-              />
-            </button>
-            <div
-              className={`side-pop-cont ${
-                isLight ? "spop-cont-light" : "spop-cont-dark"
-              }`}
-            >
-              <div className="flex1">
-                <div
-                  onClick={() => navigate("/")}
-                  className={`div ${getClassName(path === "/")}`}
+            <CrossBtnPop type="button" onClick={() => close()}>
+              <RxCross2 className={`cross-btn ${theme.crossBtnClassName}`} />
+            </CrossBtnPop>
+            <SidePopContainer>
+              <div style={{ marginTop: "30px" }}>
+                <SidePopInnerDiv
+                  onClick={() => {
+                    close();
+                    navigate("/");
+                  }}
+                  active={isActive("/")}
                 >
-                  <TiHome className={`spicon ${getIconName(path === "/")}`} />
-                  <p className={`txt ${getTxtName(path === "/")}`}>Home</p>
-                </div>
-                <div
-                  onClick={() => navigate("/trending")}
-                  className={`div ${getClassName(path === "/trending")}`}
+                  <Icon active={isActive("/")}>
+                    <TiHome />
+                  </Icon>
+                  <SidebarTxt active={isActive("/")}>Home</SidebarTxt>
+                </SidePopInnerDiv>
+                <SidePopInnerDiv
+                  onClick={() => {
+                    close();
+                    navigate("/trending");
+                  }}
+                  active={isActive("/trending")}
                 >
-                  <ImFire
-                    className={`spicon ${getIconName(path === "/trending")}`}
-                  />
-                  <p className={`txt ${getTxtName(path === "/trending")}`}>
+                  <Icon active={isActive("/trending")}>
+                    <ImFire />
+                  </Icon>
+                  <SidebarTxt active={isActive("/trending")}>
                     Trending
-                  </p>
-                </div>
-                <div
-                  onClick={() => navigate("/gaming")}
-                  className={`div ${getClassName(path === "/gaming")}`}
+                  </SidebarTxt>
+                </SidePopInnerDiv>
+                <SidePopInnerDiv
+                  onClick={() => {
+                    close();
+                    navigate("/gaming");
+                  }}
+                  active={isActive("/gaming")}
                 >
-                  <SiYoutubegaming
-                    className={`spicon ${getIconName(path === "/gaming")}`}
-                  />
-                  <p className={`txt ${getTxtName(path === "/gaming")}`}>
-                    Gaming
-                  </p>
-                </div>
-                <div
-                  onClick={() => navigate("/savedVideos")}
-                  className={`div ${getClassName(path === "/savedVideos")}`}
+                  <Icon active={isActive("/gaming")}>
+                    <SiYoutubegaming />
+                  </Icon>
+                  <SidebarTxt active={isActive("/gaming")}>Gaming</SidebarTxt>
+                </SidePopInnerDiv>
+                <SidePopInnerDiv
+                  onClick={() => {
+                    close();
+                    navigate("/savedVideos");
+                  }}
+                  active={isActive("/savedVideos")}
                 >
-                  <MdOutlinePlaylistAdd
-                    className={`spicon ${getIconName(path === "/savedVideos")}`}
-                  />
-                  <p className={`txt ${getTxtName(path === "/savedVideos")}`}>
+                  <Icon active={isActive("/savedVideos")}>
+                    <MdOutlinePlaylistAdd />
+                  </Icon>
+                  <SidebarTxt active={isActive("/savedVideos")}>
                     Saved Videos
-                  </p>
-                </div>
+                  </SidebarTxt>
+                </SidePopInnerDiv>
               </div>
-            </div>
+            </SidePopContainer>
           </>
         )}
       </Popup>
