@@ -1,103 +1,11 @@
-.logout-light {
-  background-color: transparent;
-  font-weight: 600;
-  font-size: 14px;
-  color: rgb(18, 106, 221);
-  border: solid 1px rgb(18, 106, 221);
-  border-radius: 2px;
-  height: 30px;
-  width: 100px;
-}
-.logout-dark {
-  background-color: transparent;
-  font-weight: 600;
-  font-size: 14px;
-  color: rgb(249, 251, 253);
-  border: solid 1px rgb(248, 249, 250);
-  border-radius: 2px;
-  height: 30px;
-  width: 100px;
-}
-.theme-icon-container {
-  border: none;
-  background-color: transparent;
-}
-.logout-btn-sm-dev {
-  display: none;
-}
-.logout-pop-cont {
-  padding: 5px 40px 30px 40px;
-  height: 100%;
-  width: 100%;
-  border-radius: 10px;
-}
 .logout-content {
-  width: max-content;
-  border-radius: 10px;
-}
-.light-mode-content {
-  background-color: white;
-}
-.dark-mode-content {
-  background-color: #3a3a3a;
-  color: white;
-}
-.question {
-  font-size: 18px;
-  margin-top: 30px;
-}
-.cancel-btn {
-  background-color: transparent;
-  color: gray;
-  border: solid 1px gray;
-  border-radius: 3px;
-  font-weight: 600;
-  height: 30px;
-  width: 100px;
-}
-.modal-logout-btn {
-  background-color: rgb(18, 106, 221);
-  color: white;
-  border: none;
-  border-radius: 3px;
-  font-weight: 600;
-  height: 30px;
-  width: 100px;
-}
-.flex-btn-div {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-@media (max-width: 575px) {
-  .logout-btn {
-    display: none;
+    width: 90vw;
+    border-radius: 10px;
   }
-  .logout-btn-sm-dev {
-    display: block;
-    margin-top: 5px;
+  .light-mode-content {
+    background-color: white;
   }
-}
-
-@media (min-width: 576px) and (max-width: 767px) {
-  .logout-btn {
-    display: none;
+  .dark-mode-content {
+    background-color: #3a3a3a;
+    color: white;
   }
-  .logout-btn-sm-dev {
-    display: block;
-    margin-top: 5px;
-  }
-}
-
-@media (min-width: 768px) and (max-width: 1023px) {
-  .logout-btn {
-    display: block;
-    margin-top: 18px;
-  }
-  .logout-btn-sm-dev {
-    display: none;
-  }
-}

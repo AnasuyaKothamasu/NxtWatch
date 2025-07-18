@@ -1,18 +1,28 @@
 import Cookies from "js-cookie";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import { ThemeContext } from "../../context/ThemeContext";
 import PremiumCard from "../PremiumCard";
 import VideoCard from "../VideoCard";
 import { BeatLoader } from "react-spinners";
-import "./index.css";
 import { FaSearch } from "react-icons/fa";
-import Navbar from "../Navbar";
 import Sidebar from "../Sidebar";
 import FailureView from "../FailureView";
+import {
+  HomeSuccessContainer,
+  HomeContainer1,
+  SearchInputContainer,
+  SearchInput,
+  SearchButton,
+  HomeGridContainer,
+  NoVideosCotainer,
+  NoSearchHeading,
+  NoSearchDescp,
+  NoSearchImage,
+  Loader,
+  RetryButton
+} from "./StyledComponents";
 
 const Home = () => {
-  const [isLight] = useContext(ThemeContext);
   const [isLoading, setIsLoading] = useState(true);
   const [videosList, setVideosList] = useState([]);
   const [showPremiumCard, setShowPremiumCard] = useState(true);
@@ -68,43 +78,21 @@ const Home = () => {
   function novideosView() {
     return (
       <>
-        <div
-          className={`nosearch-view ${
-            isLight ? "nosearch-light" : "nosearch-dark"
-          }`}
-        >
-          <img
-            src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-search-results-img.png"
-            className="nosearch-img"
-          />
-          <h2
-            className={`nosaved-heading ${
-              isLight ? "heading-light" : "heading-dark"
-            }`}
-          >
-            No Search results found
-          </h2>
-          <p
-            className={`nosearch-descp ${
-              isLight ? "descp-light" : "descp-dark"
-            }`}
-          >
+        <NoVideosCotainer>
+          <NoSearchImage src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-search-results-img.png" />
+          <NoSearchHeading>No Search results found</NoSearchHeading>
+          <NoSearchDescp>
             Try different keywords or remove search.
-          </p>
-          <button
-            onClick={handleSearch}
-            className={`failure-btn ${isLight ? "btn-light" : "btn-dark"}`}
-          >
-            Retry
-          </button>
-        </div>
+          </NoSearchDescp>
+          <RetryButton onClick={handleSearch}>Retry</RetryButton>
+        </NoVideosCotainer>
       </>
     );
   }
 
   function videosView() {
     return (
-      <div className="grid-container">
+      <HomeGridContainer>
         {filteredList.map((each) => (
           <VideoCard
             key={each.id}
@@ -112,50 +100,38 @@ const Home = () => {
             handleClick={handleClick}
           />
         ))}
-      </div>
+      </HomeGridContainer>
     );
   }
 
   function successView() {
     return (
-      <div
-        className={`home-container ${
-          isLight ? "home-container-light" : "home-container-dark"
-        }`}
-      >
+      <HomeSuccessContainer>
         {showPremiumCard && <PremiumCard removeCard={removeCard} />}
-        <div
-          className={`container ${
-            isLight ? "container2-light" : "container2-dark"
-          }`}
-        >
-          <form onSubmit={handleSearch} className="search-input-container">
-            <input
+        <HomeContainer1>
+          <SearchInputContainer onSubmit={handleSearch}>
+            <SearchInput
               type="search"
-              className={`search-bar ${
-                isLight ? "search-bar-light" : "search-bar-dark"
-              }`}
               placeholder="Search"
               value={searchInput}
               onChange={(e) => setSearchInput(e.target.value)}
             />
-            <button type="submit" className="search-btn">
+            <SearchButton type="submit">
               <FaSearch className="search-icon" />
-            </button>
-          </form>
+            </SearchButton>
+          </SearchInputContainer>
           {isLoading ? (
-            <BeatLoader
-              className="loader"
-              color={`${isLight ? "#000" : "#fff"}`}
-            />
+            <Loader>
+              {" "}
+              <BeatLoader />{" "}
+            </Loader>
           ) : filteredList.length === 0 ? (
             novideosView()
           ) : (
             videosView()
           )}
-          {}
-        </div>
-      </div>
+        </HomeContainer1>
+      </HomeSuccessContainer>
     );
   }
 
@@ -169,7 +145,6 @@ const Home = () => {
 
   return (
     <>
-      <Navbar />
       <div className="flex-container">
         <Sidebar />
         {showSuccessView ? successView() : <FailureView />}

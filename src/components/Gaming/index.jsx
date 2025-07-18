@@ -1,18 +1,23 @@
-import { useContext, useEffect, useState } from "react";
-import Navbar from "../Navbar";
+import { useEffect, useState } from "react";
 import Sidebar from "../Sidebar";
 import Cookies from "js-cookie";
-import "./index.css";
-import { ThemeContext } from "../../context/ThemeContext";
-import { ImFire } from "react-icons/im";
 import { useNavigate } from "react-router";
 import { BeatLoader } from "react-spinners";
 import FailureView from "../FailureView";
 import GamingCard from "../GamingCard";
 import { SiYoutubegaming } from "react-icons/si";
+import {
+  HeadingContainer,
+  Loader,
+  HeadingIconContainer,
+  Heading,
+  GamingSuccessContainer,
+  GamingFlexContainer,
+  GamingVideosContainer,
+  GamingGridContainer,
+} from "./StyledComponents";
 
 const Gaming = () => {
-  const [isLight] = useContext(ThemeContext);
   const navigate = useNavigate();
   const [showSuccessView, setShowSuccessView] = useState(true);
   const [gamingVideos, setGamingVideos] = useState([]);
@@ -58,47 +63,20 @@ const Gaming = () => {
 
   function successView() {
     return (
-      <div
-        className={`gaming-container ${
-          isLight ? "gaming-light" : "gaming-dark"
-        }`}
-      >
-        <div
-          className={`gaming-heading-div ${
-            isLight ? "gheading-div-light" : "gheading-div-dark"
-          }`}
-        >
-          <div
-            className={`gicon-container ${
-              isLight ? "glight-icon-container" : "gdark-icon-container"
-            }`}
-          >
-            <SiYoutubegaming
-              className={`gicon ${isLight ? "gicon-light" : "gicon-dark"}`}
-            />
-          </div>
-          <h1
-            className={`gheading ${
-              isLight ? "gheading-light" : "gheading-dark"
-            }`}
-          >
-            Gaming
-          </h1>
-        </div>
-        <div
-          className={`gvideos-container ${
-            isLight ? "gcontainer-light" : "gcontainer-dark"
-          }`}
-        >
-          {isLoading ? (
-            <BeatLoader
-              className={`gloader`}
-              color={`${isLight ? "#000" : "#fff"}`}
-            />
-          ) : (
-            ""
+      <GamingSuccessContainer>
+        <HeadingContainer>
+          <HeadingIconContainer>
+            <SiYoutubegaming className="icon" />
+          </HeadingIconContainer>
+          <Heading>Gaming</Heading>
+        </HeadingContainer>
+        <GamingVideosContainer>
+          {isLoading && (
+            <Loader>
+              <BeatLoader />
+            </Loader>
           )}
-          <div className="gaming-grid-container">
+          <GamingGridContainer>
             {gamingVideos.map((each) => (
               <GamingCard
                 gameDetails={each}
@@ -106,19 +84,18 @@ const Gaming = () => {
                 key={each.id}
               />
             ))}
-          </div>
-        </div>
-      </div>
+          </GamingGridContainer>
+        </GamingVideosContainer>
+      </GamingSuccessContainer>
     );
   }
 
   return (
     <>
-      <Navbar />
-      <div className="flex-gaming-container">
+      <GamingFlexContainer>
         <Sidebar />
         {showSuccessView ? successView() : <FailureView />}
-      </div>
+      </GamingFlexContainer>
     </>
   );
 };

@@ -1,27 +1,42 @@
 import { useContext, useEffect, useState } from "react";
-import "./index.css";
 import { useNavigate, useParams } from "react-router";
 import Cookies from "js-cookie";
-import Navbar from "../Navbar";
 import Sidebar from "../Sidebar";
 import { ThemeContext } from "../../context/ThemeContext";
 import { BiLike } from "react-icons/bi";
 import { BiDislike } from "react-icons/bi";
 import { MdOutlinePlaylistAdd } from "react-icons/md";
 import FailureView from "../FailureView";
+import {
+  VideoItemFlexContainer,
+  ItemDetailsContainer,
+  VideoIframe,
+  VideoItemTitle,
+  ChannelDetailsContainer,
+  ChannelProfileImage,
+  ChannelTextContainer,
+  ChannelName,
+  SubscribersText,
+  DescriptionText,
+  DividerLine,
+  TextContainer,
+  ActionButtonsContainer,
+  StatsContainer,
+  LikeButtonDiv,
+  ViewsAndPublished,
+} from "./StyledComponents";
 
 const ViewItemDetails = () => {
-  const [isLight, toggleTheme, savedVideos, save, unsave] = useContext(ThemeContext);
+  const [savedVideos, save, unsave] = useContext(ThemeContext);
   const params = useParams();
   const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(true);
   const [showSuccessView, setShowSuccessView] = useState(true);
   const [det, setDet] = useState({});
   const [isLiked, setIsLiked] = useState(false);
   const [isUnliked, setIsUnliked] = useState(false);
-  
-  const vid = savedVideos.some(videos => videos.id === params.id)
-  const [isSaved, setIsSaved] = useState(vid)
+
+  const vid = savedVideos.some((videos) => videos.id === params.id);
+  const [isSaved, setIsSaved] = useState(vid);
 
   const jwtToken = Cookies.get("jwt_token");
   if (jwtToken === undefined) {
@@ -30,102 +45,46 @@ const ViewItemDetails = () => {
 
   function successView() {
     return (
-      <div
-        className={`item-details-container ${
-          isLight ? "item-cont-light" : "item-cont-dark"
-        }`}
-      >
-        <iframe
-          className="video-item"
-          width="100%"
-          height="65%"
+      <ItemDetailsContainer>
+        <VideoIframe
           src={det.video?.replace("watch?v=", "embed/")}
           title="YouTube video player"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
-        ></iframe>
-        <div
-          className={`text-cont ${
-            isLight ? "txt-cont-light" : "text-cont-dark"
-          }`}
-        >
-          <h2
-            className={`item-head ${
-              isLight ? "item-head-light" : "item-head-dark"
-            }`}
-          >
-            {det.title}
-          </h2>
-          <div className={`ddd ${isLight ? "ddd-light" : "ddd-dark"}`}>
-            <p
-              className={`item-text ${
-                isLight ? "item-txt-light" : "item-txt-dark"
-              }`}
-            >
+        ></VideoIframe>
+        <TextContainer>
+          <VideoItemTitle>{det.title}</VideoItemTitle>
+          <StatsContainer>
+            <ViewsAndPublished>
               {det.views} views • {det.publishedAt}
-            </p>
-            <div className="xyz">
-              <div
-                onClick={handleLike}
-                className={`like-div ${isLiked ? "active-like" : ""}`}
-              >
-                <BiLike className="like" />
-                <p className="like">Like</p>
-              </div>
-              <div
-                onClick={handleDislike}
-                className={`like-div ${isUnliked ? "active-like" : ""}`}
-              >
-                <BiDislike className="like" />
-                <p className="like">Dislike</p>
-              </div>
-              <div
-                onClick={handleSave}
-                className={`like-div ${isSaved ? "active-like" : ""}`}
-              >
-                <MdOutlinePlaylistAdd className="like" />
-                <p className="like">{isSaved ? "Saved" : "Save"}</p>
-              </div>
-            </div>
-          </div>
-          <hr className="line" />
-          <div
-            className={`channel-details-cont ${
-              isLight ? "channel-light" : "channel-dark"
-            }`}
-          >
-            <img src={det.channelProfile} className={`channel-profile-item`} />
-            <div
-              className={`txt-div-item ${
-                isLight ? "text-div-item-light" : "txt-div-item-dark"
-              }`}
-            >
-              <h2
-                className={`channel-name-item ${
-                  isLight ? "channel-name-item-light" : "channel-name-item-dark"
-                }`}
-              >
-                {det.channelName}
-              </h2>
-              <p
-                className={`subscribers ${
-                  isLight ? "subscribers-light" : "subscribers-dark"
-                }`}
-              >
-                {det.subscribers} subscribers
-              </p>
-              <p
-                className={`description-item ${
-                  isLight ? "description-item-light" : "description-item-dark"
-                }`}
-              >
-                {det.descp}
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+            </ViewsAndPublished>
+            <ActionButtonsContainer>
+              <LikeButtonDiv isActive={isLiked} onClick={handleLike}>
+                <BiLike style={{ marginRight: "5px" }} />
+                <p>Like</p>
+              </LikeButtonDiv>
+              <LikeButtonDiv isActive={isUnliked} onClick={handleDislike}>
+                <BiDislike style={{ marginRight: "5px" }} />
+                <p>Dislike</p>
+              </LikeButtonDiv>
+              <LikeButtonDiv isActive={isSaved} onClick={handleSave}>
+                <MdOutlinePlaylistAdd style={{ marginRight: "5px" }} />
+                <p>{isSaved ? "Saved" : "Save"}</p>
+              </LikeButtonDiv>
+            </ActionButtonsContainer>
+          </StatsContainer>
+          <DividerLine />
+          <ChannelDetailsContainer>
+            <ChannelProfileImage src={det.channelProfile} />
+            <ChannelTextContainer>
+              <ChannelName>{det.channelName}</ChannelName>
+              <SubscribersText>{det.subscribers} subscribers</SubscribersText>
+              <DescriptionText>{det.descp}</DescriptionText>
+            </ChannelTextContainer>
+          </ChannelDetailsContainer>
+        </TextContainer>
+      </ItemDetailsContainer>
     );
   }
 
@@ -150,10 +109,10 @@ const ViewItemDetails = () => {
       const newSavedState = !prev;
       if (newSavedState) {
         save(det);
-        return newSavedState
-      }else{
+        return newSavedState;
+      } else {
         unsave(det);
-        return newSavedState
+        return newSavedState;
       }
     });
   }
@@ -184,7 +143,6 @@ const ViewItemDetails = () => {
           views: vd.view_count,
         };
         setDet(formattedData);
-        setIsLoading(false);
         setShowSuccessView(true);
       } else {
         setShowSuccessView(false);
@@ -195,11 +153,10 @@ const ViewItemDetails = () => {
 
   return (
     <>
-      <Navbar />
-      <div className="flex-container-item">
+      <VideoItemFlexContainer>
         <Sidebar />
         {showSuccessView ? successView() : <FailureView />}
-      </div>
+      </VideoItemFlexContainer>
     </>
   );
 };

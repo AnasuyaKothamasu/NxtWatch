@@ -1,41 +1,52 @@
-import { useContext } from "react";
-import "./index.css";
-import { ThemeContext } from "../../context/ThemeContext";
-import { FaMoon } from "react-icons/fa";
 import { IoSunnyOutline } from "react-icons/io5";
+import { FaMoon } from "react-icons/fa";
 import ReactPopup from "../ReactPopup";
 import { useNavigate } from "react-router";
-import "reactjs-popup/dist/index.css"; 
+import "reactjs-popup/dist/index.css";
 import SidebarPopup from "../SidebarPopup";
+import { useTheme } from "styled-components";
+import {
+  FlexContainer,
+  NavbarContainer,
+  ThemeIconContainer,
+  ProfileImage,
+  ProfileImgContainer,
+  NavbarLogo,
+} from "./StyledComponents";
 
-const Navbar = () => {
-  const [isLight, toggleTheme] = useContext(ThemeContext);
-  const navigate = useNavigate()
-  const logoUrl = isLight
-    ? "https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
-    : "https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png";
+const Navbar = (props) => {
+  const { isLight, toggleTheme } = props;
+  const navigate = useNavigate();
+  const theme = useTheme();
 
   return (
-    <div className={`navbar ${isLight ? "navbar-light" : "navbar-dark"}`}>
-      <img onClick={() => navigate("/")} src={logoUrl} className="navbar-logo" />
-      <div className="flex-container">
-        <button className="theme-icon-container" onClick={toggleTheme}>
+    <NavbarContainer>
+      <NavbarLogo
+        onClick={() => navigate("/")}
+        src={theme.logoUrl}
+        alt="Website Logo"
+      />
+
+      <FlexContainer className="flex-container">
+        <ThemeIconContainer as="button" onClick={toggleTheme}>
           {isLight ? (
-            <FaMoon className="themeIcon-light" />
+            <FaMoon className={`themeIcon ${theme.themeIcon}`} />
           ) : (
-            <IoSunnyOutline className="themeIcon-dark" />
+            <IoSunnyOutline className={`themeIcon ${theme.themeIcon}`} />
           )}
-        </button>
-        <button className="bb">
-          <img
+        </ThemeIconContainer>
+
+        <ProfileImgContainer>
+          <ProfileImage
             src="https://assets.ccbp.in/frontend/react-js/nxt-watch-profile-img.png"
-            className="profile-img"
+            alt="Profile"
           />
-        </button>
+        </ProfileImgContainer>
+
         <SidebarPopup />
         <ReactPopup />
-      </div>
-    </div>
+      </FlexContainer>
+    </NavbarContainer>
   );
 };
 
