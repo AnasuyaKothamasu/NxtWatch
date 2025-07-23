@@ -10,6 +10,10 @@ import ViewItemDetails from "./components/ViewItemDetails";
 import { ThemeProvider } from "styled-components";
 import { useState } from "react";
 import Navbar from './components/Navbar'
+
+
+
+
 const App = () => {
   const [isLight, setIsLight] = useState(true);
 

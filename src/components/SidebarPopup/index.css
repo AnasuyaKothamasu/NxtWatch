@@ -1,11 +1,11 @@
 .menu-content {
-    height: 100vh;
-    border-radius: 0;
-    width: 100%;
-  }
-  .light-mode-content {
-    background-color: white;
-  }
-  .dark-mode-content {
-    background-color: rgb(37, 37, 37);
-  }
+  height: 100vh;
+  border-radius: 0;
+  width: 100%;
+}
+.light-mode-content {
+  background-color: white;
+}
+.dark-mode-content {
+  background-color: rgb(37, 37, 37);
+}

@@ -4,7 +4,7 @@ export const GamingCardd = styled.div`
   background-color: transparent;
   width: 25vw;
   @media (max-width: 575px) {
-    width: 45vw;
+    width: 40vw;
   }
   @media (min-width: 576px) and (max-width: 767px) {
     width: 30vw;
@@ -14,9 +14,13 @@ export const GamingCardd = styled.div`
 export const GamingCardThumbnail = styled.img`
   height: 350px;
   width: 90%;
-  @media (max-width: 575px) {
+  @media (max-width: 400px) {
+    width: 100%;
+    height: 180px;
+  }
+  @media (min-width: 400px) and (max-width: 575px) {
     align-self: center;
-    width: 90%;
+    width: 100%;
     height: 200px;
   }
   @media (min-width: 576px) and (max-width: 767px) {
@@ -30,8 +34,12 @@ export const GamingCardThumbnail = styled.img`
 
 export const GamingCardTitle = styled.h2`
   color: ${(props) => props.theme.txtColor};
+  margin: 10px 5px 0 5px;
   font-weight: 700;
-  @media (max-width: 575px) {
+  @media (max-width: 400px) {
+    font-size: 14px;
+  }
+  @media (min-width: 400px) and (max-width: 575px) {
     font-size: 18px;
   }
   @media (min-width: 576px) and (max-width: 767px) {
@@ -45,8 +53,12 @@ export const GamingCardTitle = styled.h2`
 export const GamingCardViews = styled.p`
   font-size: 16px;
   font-weight: 600;
+  margin: 10px 5px 0 5px;
   color: ${(props) => props.theme.gamingViews};
-  @media (max-width: 575px) {
+  @media (max-width: 400px) {
+    font-size: 10px;
+  }
+  @media (min-width: 400px) and (max-width: 575px) {
     font-size: 14px;
   }
   @media (min-width: 576px) and (max-width: 767px) {
